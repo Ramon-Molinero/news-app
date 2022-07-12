@@ -26,3 +26,18 @@ export interface ArticleByCategoryAndPage {
     articles: Article[]
   }
 }
+
+export interface ArticleOfCategory {
+  business?: Category;
+  entertainment?: Category;
+  general?: Category;
+  health?: Category;
+  science?: Category;
+  sports?: Category;
+  technology?: Category;
+}
+
+export interface Category {
+  page: number;
+  articles: Article[];
+}
