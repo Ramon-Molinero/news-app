@@ -5,6 +5,8 @@ import { ActionSheetButton, ActionSheetController, Platform } from '@ionic/angul
 import { SocialSharing } from '@awesome-cordova-plugins/social-sharing/ngx';
 import { StorageService } from 'src/app/services/storage.service';
 
+import { Share } from '@capacitor/share';
+
 @Component({
   selector: 'app-article',
   templateUrl: './article.component.html',
@@ -60,7 +62,9 @@ export class ArticleComponent implements OnInit {
         },
     ]
 
-     if (this.platform.is('capacitor')) {
+    // otherButtons.unshift(share);
+
+     if (!this.platform.is('desktop')) {
       otherButtons.unshift(share);
      }
 
@@ -75,10 +79,25 @@ export class ArticleComponent implements OnInit {
 
   }
 
-  sharedArticle() {
+  async sharedArticle() {
     console.log('Shared Options');
     const { title, source, url } = this.article;
-    this.socialSharing.share(title, source.name, null, url);
+
+
+    if (this.platform.is('capacitor')) {
+      this.socialSharing.share(title, source.name, null, url);
+    } else if (navigator.share) {
+      navigator
+        .share({
+          title,
+          text: source.name,
+          url,
+        })
+        .then(() => console.log('Successful share'))
+        .catch((error) => console.log('Error sharing', error));
+    } else {
+      console.log('is not support in navigator');
+    }
   }
 
   toggleFavoriteArticle() {
