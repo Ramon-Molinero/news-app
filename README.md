@@ -21,10 +21,9 @@ Además, permite almacenar favoritos localmente mediante **Ionic Storage**, comp
 - **src/services:** Servicios para manejo de noticias y almacenamiento local.
 - **src/environments:** Configuración de entorno para claves API y producción.
 - **android e ios:** Archivos específicos de plataforma.
-- **e2e:** Pruebas de extremo a extremo.
 
-## **Pruebas y Despliegue**
-- **Testing:** Pruebas unitarias con **Karma** y pruebas E2E con **Protractor**.
+
+## **Despliegue**
 - **Despliegue:** Utiliza **Firebase Hosting** para la versión web.
 - **URL:** https://ionic-news-d2221.web.app/
 
